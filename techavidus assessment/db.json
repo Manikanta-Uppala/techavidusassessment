@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "productName": "keyboard",
+      "prize": 300,
+      "Quantity": 2
+    },
+    {
+      "id": 2,
+      "productName": "Mouse",
+      "prize": 150,
+      "Quantity": 3
+    },
+    {
+      "id": 3,
+      "productName": "HDD",
+      "prize": 200,
+      "Quantity": 10
+    }
+  ]
+}

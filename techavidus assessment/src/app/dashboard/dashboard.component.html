@@ -1,0 +1,81 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <h1 style="color: white;">Shopping Cart</h1>
+    <div class="d-flex">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+        product</button>
+    </div>
+  </div>
+</nav>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th scope="col">Action</th>
+      <!-- <th scope="col">Total</th> -->
+    </tr>
+  </thead>
+  <tbody *ngFor="let row of productData">
+    <tr>
+      <td>{{row.id}}</td>
+      <td>{{row.productName}}</td>
+      <td>{{row.prize | currency:"INR":"symbol"}}</td>
+      <td>{{row.Quantity}}</td>
+      <td>{{row.prize*row.Quantity | currency: "INR":"symbol"}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          (click)="onEdit(row)">Edit</button>
+        <button (click)="deleteProducts(row)" class="btn btn-danger mx-3">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+  <tr>
+    <td colspan="3"></td>
+    <td colspan="1"><b>Total</b> </td>
+    <td colspan="1"><b>{{total | currency: "INR" : "symbol"}}</b></td>
+  </tr>
+</table>
+<h1 class="mt-5" *ngIf = "productData.length === 0" style="color: red; font-size: 25px; text-align: center;">YOUR CART IS EMPTY</h1>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]=form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">ID</label>
+            <input type="number" formControlName="id" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Product Name</label>
+            <input type="email" formControlName="productName" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Prize</label>
+            <input type="number" formControlName="prize" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Quantity</label>
+            <input type="number" formControlName="Quantity" class="form-control" id="exampleInputPassword2">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="postproductDetails()" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-primary" (click)="updateProductData()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
